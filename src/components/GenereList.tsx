@@ -1,10 +1,10 @@
-import useGenere from '@/hooks/useGenere'
+import useGenere from '../hooks/useGenere'
 
 const GenereList = () => {
+const {data} = useGenere()
 
-    const {genere} = useGenere()
   return (
-    <ul>{genere.map(genere => <li key={genere.id}>{genere.name}</li>)}</ul>
+    <ul>{data.map(genre => <li key={genre.id}>{genre.name}</li>)}</ul>
   )
 }
 
