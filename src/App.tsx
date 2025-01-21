@@ -2,6 +2,7 @@ import { Grid, GridItem, useBreakpointValue } from '@chakra-ui/react';
 import './App.css';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
+import GenereList from './components/GenereList';
 
 function App() {
   // Use the hook to check if the screen is large or not
@@ -20,7 +21,7 @@ function App() {
 
       {isLgScreen && (
         <GridItem area="aside">
-          Side
+          <GenereList/>
         </GridItem>
       )}
       
