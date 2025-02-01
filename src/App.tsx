@@ -3,10 +3,13 @@ import './App.css';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import GenereList from './components/GenereList';
+import { useState } from 'react';
+import { Genere } from './hooks/useGenere'
 
 function App() {
   // Use the hook to check if the screen is large or not
   const isLgScreen = useBreakpointValue({ base: false, lg: true });
+  const [selectedGenere, setSelectedGenere] = useState<Genere | null>(null)
 
   return (
     <Grid
@@ -26,12 +29,12 @@ function App() {
 
       {isLgScreen && (
         <GridItem area="aside">
-          <GenereList/>
+          <GenereList onSelectedGenere={(genere) => setSelectedGenere(genere)}/>
         </GridItem>
       )}
       
       <GridItem area="main">
-        <GameGrid/>
+        <GameGrid selectedGenere={selectedGenere}/>
       </GridItem>
     </Grid>
   );

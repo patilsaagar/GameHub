@@ -1,16 +1,28 @@
-import useGenere from '../hooks/useGenere'
-import { Box, HStack, Image, Text } from "@chakra-ui/react"
+import { Box, Button, HStack, Image, Spinner } from "@chakra-ui/react"
+import useGenere, { Genere } from '../hooks/useGenere'
 
-const GenereList = () => {
-const {data} = useGenere()
+interface Props {
+  onSelectedGenere: (genre: Genere) => void
+}
 
+const GenereList = ({ onSelectedGenere }: Props) => {
+  const { data, isLoading } = useGenere()
+
+  if (isLoading) return <Spinner />
+  
   return (
-    <Box paddingY='5px'>
-        {data.map(genre =><HStack>
-            <Image src={genre.image_background} boxSize='32px'></Image>
-            <Box key={genre.id} paddingY='10px'><Text fontSize='lg'>{genre.name}</Text></Box>
-        </HStack>)}
-  </Box>
+    <Box>
+      {data?.map(genre => (
+        <HStack key={genre.id}>
+          <Image src={genre.image_background} boxSize='32px' />
+          <Box paddingY='5px'>
+            <Button variant='plain' onClick={() => onSelectedGenere(genre)}>
+              {genre.name}
+            </Button>
+          </Box>
+        </HStack>
+      ))}
+    </Box>
   )
 }
 

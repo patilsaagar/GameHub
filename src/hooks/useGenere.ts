@@ -1,6 +1,6 @@
 import useData from "./useData"
 
-interface Genere{
+export interface Genere {
     id: number
     name: string
     image_background: string
